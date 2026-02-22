@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcwsl5elmn3xl"]
+
+[ext_resource type="Texture2D" uid="uid://cth20j4hrvqb1" path="res://Assets/Grass/tall_grass.png" id="1_a5fcn"]
+[ext_resource type="Script" uid="uid://dq0hicvyjn6q5" path="res://tall_grass.gd" id="1_gbl6l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5fcn"]
+size = Vector2(14, 14)
+
+[sub_resource type="Animation" id="Animation_ip8he"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_thb15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_klfnc"]
+resource_name = "Stepped"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7iukd"]
+_data = {
+&"Idle": SubResource("Animation_ip8he"),
+&"RESET": SubResource("Animation_thb15"),
+&"Stepped": SubResource("Animation_klfnc")
+}
+
+[node name="TallGrass" type="Node2D"]
+script = ExtResource("1_gbl6l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a5fcn")
+centered = false
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_a5fcn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7iukd")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
