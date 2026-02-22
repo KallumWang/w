@@ -1,12 +1,81 @@
-[gd_scene format=3 uid="uid://deg024tpkjqmy"]
+[gd_scene load_steps=3 format=3 uid="uid://deg024tpkjqmy"]
 
 [ext_resource type="Script" uid="uid://7xfqxepyrm5s" path="res://battle_scene.gd" id="1_fw8re"]
+[ext_resource type="Texture2D" uid="uid://cqtuo0sfkqq2p" path="res://icon.svg" id="2_r5l0u"]
 
-[node name="BattleScene" type="Node2D" unique_id=616201382]
+[node name="BattleScene" type="Node2D"]
 script = ExtResource("1_fw8re")
 
-[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=799207822]
+[node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(33, 145)
 
-[node name="EnemySpawn" type="Marker2D" parent="." unique_id=702615420]
-position = Vector2(251, 36)
+[node name="EnemySpawn" type="Marker2D" parent="."]
+position = Vector2(252, 56)
+
+[node name="BattleUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="BattleUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 222.0
+offset_top = 125.0
+offset_right = 290.0
+offset_bottom = 243.22266
+scale = Vector2(1.0317459, 0.3941491)
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleUI/Control"]
+layout_mode = 0
+offset_right = 66.0
+offset_bottom = 104.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleUI/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="move1" type="Button" parent="BattleUI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Toe Mass"
+
+[node name="move2" type="Button" parent="BattleUI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fireball"
+
+[node name="move3" type="Button" parent="BattleUI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Kidnap"
+
+[node name="move4" type="Button" parent="BattleUI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Oil Up"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleUI"]
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 223.0
+offset_bottom = 43.0
+scale = Vector2(1.0201981, 0.78570324)
+
+[node name="EnemyHPBar" type="TextureProgressBar" parent="BattleUI"]
+offset_left = 276.00003
+offset_right = 404.00003
+offset_bottom = 300.0
+scale = Vector2(0.3276866, 0.14837414)
+max_value = 500.0
+texture_progress = ExtResource("2_r5l0u")
+tint_progress = Color(0.5019608, 0.92941177, 0.5019608, 1)
+
+[node name="PlayerHPBar" type="TextureProgressBar" parent="BattleUI"]
+offset_left = 15.000001
+offset_top = 77.00001
+offset_right = 143.0
+offset_bottom = 205.0
+rotation = -6.275622
+scale = Vector2(0.37420675, 0.27319074)
+max_value = 150.0
+texture_progress = ExtResource("2_r5l0u")
+tint_progress = Color(0.40884653, 0.76321036, 0.4025342, 1)
+
+[connection signal="pressed" from="BattleUI/Control/MarginContainer/VBoxContainer/move1" to="." method="_on_move_1_pressed"]
+[connection signal="pressed" from="BattleUI/Control/MarginContainer/VBoxContainer/move2" to="." method="_on_move_2_pressed"]
+[connection signal="pressed" from="BattleUI/Control/MarginContainer/VBoxContainer/move3" to="." method="_on_move_3_pressed"]
+[connection signal="pressed" from="BattleUI/Control/MarginContainer/VBoxContainer/move4" to="." method="_on_move_4_pressed"]

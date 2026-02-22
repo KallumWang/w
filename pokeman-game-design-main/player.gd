@@ -87,7 +87,13 @@ func move(delta):
 		position = initial_postion + (TILE_SIZE * input_direction)
 		percent_moved_to_next_tile = 0.0
 		is_moving = false
+		check_for_encounter()
 
 	else:
 		# We are still sliding towards the tile
 		position = initial_postion + (TILE_SIZE * input_direction * percent_moved_to_next_tile)
+
+func check_for_encounter():
+	# You can add logic here to check if the current tile is 'grass' 
+	# Or just let the TallGrass script handle the body_entered signal!
+	pass
