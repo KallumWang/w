@@ -1,7 +1,7 @@
 extends Node2D
 
 # --- DATA ---
-var player_hp = 150
+var player_hp = 250
 var enemy_hp = 500
 var lucky_multiplier: float = 2.0
 var lucky_move_index: int = -1
@@ -142,9 +142,12 @@ func flash_sprite(sprite: Sprite2D, color: Color):
 func victory_animation(defeated_sprite: Sprite2D):
 	var tween = create_tween()
 	tween.parallel().tween_property(defeated_sprite, "modulate:a", 0, 0.5)
-	tween.parallel().tween_property(defeated_sprite, "position:y", 100, 0.5)
-	move_menu.hide()
-
+	
+	# Wait for animation, then go back to the saved map
+	await tween.finished
+	if Global.current_map_path != "":
+		get_tree().change_scene_to_file(Global.current_map_path)
+		
 func spawn_damage_number(amount: int, target_position: Vector2, color: Color):
 	var label = Label.new()
 	label.text = str(amount)
@@ -174,4 +177,4 @@ func _on_move_3_pressed() -> void:
 
 func _on_move_4_pressed() -> void:
 	if is_player_turn:
-		execute_player_move(3, "Oil Up", 30)
+		execute_player_move(3, "Oil Up", 3000)

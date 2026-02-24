@@ -51,8 +51,8 @@ text = "Oil Up"
 [node name="RichTextLabel" type="RichTextLabel" parent="BattleUI"]
 offset_left = 6.0
 offset_top = 3.0
-offset_right = 223.0
-offset_bottom = 43.0
+offset_right = 242.22862
+offset_bottom = 59.000786
 scale = Vector2(1.0201981, 0.78570324)
 
 [node name="EnemyHPBar" type="TextureProgressBar" parent="BattleUI"]

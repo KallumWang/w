@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpiddfu435x5a"]
+[gd_scene load_steps=7 format=3 uid="uid://dpiddfu435x5a"]
 
 [ext_resource type="PackedScene" uid="uid://spiuxiiyfpr5" path="res://player.tscn" id="1_c7s6e"]
+[ext_resource type="Script" uid="uid://dacc44lpkl60u" path="res://map.gd" id="1_p5pve"]
 [ext_resource type="Texture2D" uid="uid://c4chepjv5svjy" path="res://Assets/Tilesets/grass1_tileset.png" id="1_wijl4"]
 [ext_resource type="PackedScene" uid="uid://bcwsl5elmn3xl" path="res://tall_grass.tscn" id="3_e0an3"]
 
@@ -28,6 +29,7 @@ texture = ExtResource("1_wijl4")
 sources/0 = SubResource("TileSetAtlasSource_e0an3")
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_p5pve")
 
 [node name="OverworldTileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_p5pve")
@@ -40,7 +42,7 @@ layer_0/tile_data = PackedInt32Array(-65538, 196608, 0, -2, 196608, 1, 65534, 19
 position = Vector2(16, 32)
 
 [node name="TallGrass2" parent="." instance=ExtResource("3_e0an3")]
-position = Vector2(0, 18)
+position = Vector2(0, 16)
 
 [node name="TallGrass3" parent="." instance=ExtResource("3_e0an3")]
-position = Vector2(-1, 32)
+position = Vector2(0, 32)
